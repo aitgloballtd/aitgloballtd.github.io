@@ -1,27 +1,850 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>AIT Global Ltd</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AIT Global LTD | Portfolio</title>
+  <meta
+    name="description"
+    content="AIT Global LTD - Professional web development, Shopify, WooCommerce, API integration, and eCommerce solutions with 10+ years of experience."
+  />
+  <style>
+    :root {
+      --bg: #0b1220;
+      --bg-soft: #111a2e;
+      --card: rgba(255, 255, 255, 0.06);
+      --card-border: rgba(255, 255, 255, 0.12);
+      --text: #f3f6fc;
+      --muted: #b7c3d8;
+      --accent: #4f8cff;
+      --accent-2: #7aa8ff;
+      --success: #67d39c;
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.28);
+      --radius: 18px;
+      --max: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(79, 140, 255, 0.16), transparent 28%),
+        radial-gradient(circle at top right, rgba(103, 211, 156, 0.10), transparent 20%),
+        linear-gradient(180deg, #08101d 0%, #0b1220 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(92%, var(--max));
+      margin: 0 auto;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 22px;
+      border-radius: 999px;
+      font-weight: 700;
+      transition: 0.25s ease;
+      border: 1px solid transparent;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #fff;
+      box-shadow: 0 12px 30px rgba(79, 140, 255, 0.28);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 36px rgba(79, 140, 255, 0.35);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border-color: rgba(255, 255, 255, 0.18);
+      color: var(--text);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.06);
+      transform: translateY(-2px);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(79, 140, 255, 0.12);
+      border: 1px solid rgba(79, 140, 255, 0.25);
+      color: #d8e6ff;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(14px);
+      background: rgba(8, 16, 29, 0.74);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 74px;
+    }
+
+    .logo {
+      font-size: 1.2rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
+
+    .logo span {
+      color: var(--accent-2);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-weight: 600;
+      transition: 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 28px;
+      cursor: pointer;
+    }
+
+    .hero {
+      padding: 92px 0 70px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 5vw, 4.5rem);
+      line-height: 1.08;
+      margin: 18px 0 18px;
+    }
+
+    .hero p {
+      font-size: 1.06rem;
+      color: var(--muted);
+      max-width: 720px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 34px;
+    }
+
+    .stat {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .stat h3 {
+      font-size: 1.6rem;
+      margin-bottom: 6px;
+    }
+
+    .stat p {
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .hero-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+      border: 1px solid var(--card-border);
+      border-radius: 26px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 26px;
+    }
+
+    .hero-card h3 {
+      font-size: 1.35rem;
+      margin-bottom: 8px;
+    }
+
+    .hero-card p {
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
+    .mini-list {
+      margin-top: 18px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .mini-item {
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .mini-item strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    section {
+      padding: 80px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto 42px;
+    }
+
+    .section-title h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 14px;
+    }
+
+    .section-title p {
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .services-grid,
+    .projects-grid,
+    .process-grid,
+    .testimonials-grid {
+      display: grid;
+      gap: 22px;
+    }
+
+    .services-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .projects-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .process-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .testimonials-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      transition: 0.25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(122, 168, 255, 0.35);
+    }
+
+    .card h3 {
+      margin: 12px 0 10px;
+      font-size: 1.2rem;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 0.97rem;
+    }
+
+    .icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      font-size: 1.35rem;
+      background: linear-gradient(135deg, rgba(79,140,255,0.24), rgba(122,168,255,0.16));
+      border: 1px solid rgba(122, 168, 255, 0.24);
+    }
+
+    .project-card {
+      overflow: hidden;
+      padding: 0;
+    }
+
+    .project-image {
+      height: 220px;
+      background:
+        linear-gradient(135deg, rgba(79,140,255,0.30), rgba(11,18,32,0.65)),
+        linear-gradient(180deg, #26395f 0%, #172238 100%);
+      display: flex;
+      align-items: flex-end;
+      padding: 22px;
+    }
+
+    .project-image span {
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.84rem;
+      font-weight: 700;
+    }
+
+    .project-content {
+      padding: 24px;
+    }
+
+    .project-content ul {
+      margin-top: 12px;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    .about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .about-box {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+    }
+
+    .about-box h2 {
+      font-size: 2.1rem;
+      margin-bottom: 16px;
+    }
+
+    .about-box p {
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .check-list {
+      list-style: none;
+      display: grid;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .check-list li {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      color: var(--text);
+    }
+
+    .check-list li span {
+      color: var(--success);
+      font-weight: bold;
+    }
+
+    .cta {
+      text-align: center;
+      background: linear-gradient(135deg, rgba(79,140,255,0.16), rgba(122,168,255,0.08));
+      border: 1px solid rgba(122, 168, 255, 0.22);
+      border-radius: 28px;
+      padding: 50px 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .cta h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 14px;
+    }
+
+    .cta p {
+      color: var(--muted);
+      max-width: 720px;
+      margin: 0 auto 24px;
+    }
+
+    footer {
+      padding: 26px 0 40px;
+    }
+
+    .footer-wrap {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 26px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 16px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .footer-wrap a:hover {
+      color: var(--text);
+    }
+
+    @media (max-width: 1100px) {
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .projects-grid,
+      .testimonials-grid,
+      .process-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .hero-grid,
+      .about {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .nav-links {
+        position: absolute;
+        right: 4%;
+        top: 74px;
+        width: 92%;
+        background: #0f1728;
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 18px;
+        padding: 18px;
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .hero-stats,
+      .services-grid,
+      .projects-grid,
+      .process-grid,
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 70px;
+      }
+
+      .hero-card {
+        padding: 22px;
+      }
+
+      .footer-wrap {
+        flex-direction: column;
+      }
+    }
+  </style>
 </head>
-<body style="font-family: Arial; margin:0; padding:0; text-align:center;">
+<body>
+  <header>
+    <div class="container nav">
+      <a href="#" class="logo">AIT <span>Global LTD</span></a>
 
-  <div style="background:#111; color:#fff; padding:40px;">
-    <h1>AIT Global Ltd</h1>
-    <p>Web Development & Digital Solutions</p>
-  </div>
+      <nav>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#services">Services</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#process">Process</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
 
-  <div style="padding:40px;">
-    <h2>Our Services</h2>
-    <p>Website Development | WordPress | E-commerce | Custom Web Apps</p>
-  </div>
+      <div class="menu-toggle" id="menuToggle">&#9776;</div>
+    </div>
+  </header>
 
-  <div style="background:#f4f4f4; padding:40px;">
-    <h2>Projects</h2>
-    <p>✔ Business Website</p>
-    <p>✔ E-commerce Store</p>
-    <p>✔ Landing Page</p>
-  </div>
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="badge">10+ Years of Experience in Web & eCommerce Solutions</span>
+          <h1>Building clean, scalable, and high-converting digital experiences.</h1>
+          <p>
+            We help businesses launch, improve, and grow online through professional website development,
+            Shopify and WooCommerce solutions, API integrations, and performance-focused design.
+          </p>
 
+          <div class="hero-actions">
+            <a href="#projects" class="btn btn-primary">View Portfolio</a>
+            <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+          </div>
+
+          <div class="hero-stats">
+            <div class="stat">
+              <h3>10+</h3>
+              <p>Years of practical industry experience</p>
+            </div>
+            <div class="stat">
+              <h3>100+</h3>
+              <p>Projects completed across web and eCommerce</p>
+            </div>
+            <div class="stat">
+              <h3>24/7</h3>
+              <p>Support mindset with reliable maintenance</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="hero-card-top">
+            <div>
+              <h3>What We Do</h3>
+              <p>Practical solutions for serious businesses.</p>
+            </div>
+            <span class="badge">AIT Global LTD</span>
+          </div>
+
+          <div class="mini-list">
+            <div class="mini-item">
+              <strong>Shopify & WooCommerce Development</strong>
+              Custom stores, theme edits, product setup, and long-term maintenance.
+            </div>
+            <div class="mini-item">
+              <strong>API & Platform Integration</strong>
+              eBay, payment gateways, inventory sync, automation, and custom workflows.
+            </div>
+            <div class="mini-item">
+              <strong>Performance & Conversion Focus</strong>
+              Fast loading, clean UI, responsive design, and better customer experience.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <div class="section-title">
+          <h2>Services</h2>
+          <p>
+            We provide end-to-end digital services for businesses that need quality work,
+            stable systems, and results that last.
+          </p>
+        </div>
+
+        <div class="services-grid">
+          <div class="card">
+            <div class="icon">💻</div>
+            <h3>Website Development</h3>
+            <p>
+              Professional business websites built with clean structure, modern layout,
+              responsive design, and strong performance.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="icon">🛒</div>
+            <h3>eCommerce Solutions</h3>
+            <p>
+              Shopify and WooCommerce stores designed for usability, product management,
+              conversions, and smooth customer journeys.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="icon">⚙️</div>
+            <h3>API Integration</h3>
+            <p>
+              Third-party integrations for inventory sync, payment gateways, automation,
+              CRMs, and marketplace connections.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="icon">🔧</div>
+            <h3>Maintenance & Support</h3>
+            <p>
+              Ongoing updates, bug fixing, speed optimization, content updates,
+              troubleshooting, and long-term technical support.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-title">
+          <h2>Selected Work</h2>
+          <p>
+            A few examples of the type of work we handle for eCommerce, integrations,
+            and business websites.
+          </p>
+        </div>
+
+        <div class="projects-grid">
+          <article class="card project-card">
+            <div class="project-image">
+              <span>WooCommerce</span>
+            </div>
+            <div class="project-content">
+              <h3>Subscription Payment Issue Resolution</h3>
+              <p>
+                Diagnosed and fixed recurring payment issues on a subscription-based WooCommerce site.
+              </p>
+              <ul>
+                <li>Payment gateway troubleshooting</li>
+                <li>Webhook and plugin conflict checks</li>
+                <li>Improved transaction reliability</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="card project-card">
+            <div class="project-image">
+              <span>Shopify</span>
+            </div>
+            <div class="project-content">
+              <h3>Shopify Store Design & Management</h3>
+              <p>
+                Developed and maintained a high-performing Shopify store with custom theme work and app integration.
+              </p>
+              <ul>
+                <li>Theme customization using Liquid</li>
+                <li>Product and content uploads</li>
+                <li>Performance and UX improvements</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="card project-card">
+            <div class="project-image">
+              <span>API Integration</span>
+            </div>
+            <div class="project-content">
+              <h3>Auto Parts Inventory Sync Platform</h3>
+              <p>
+                Built an eCommerce workflow to connect product listings and maintain accurate inventory data.
+              </p>
+              <ul>
+                <li>Marketplace integration planning</li>
+                <li>Live stock and pricing sync logic</li>
+                <li>Fast and user-friendly storefront approach</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container about">
+        <div class="about-box">
+          <h2>About AIT Global LTD</h2>
+          <p>
+            AIT Global LTD is focused on delivering practical digital solutions that help businesses
+            operate better online. We combine technical knowledge, eCommerce experience, and a strong
+            understanding of what clients actually need.
+          </p>
+          <p>
+            Our approach is simple: build clean, solve problems properly, and keep everything stable
+            as the business grows.
+          </p>
+        </div>
+
+        <div class="about-box">
+          <h2>Why Clients Work With Us</h2>
+          <ul class="check-list">
+            <li><span>✔</span> More than 10 years of real-world development experience</li>
+            <li><span>✔</span> Strong background in Shopify, WooCommerce, and custom integrations</li>
+            <li><span>✔</span> Clear communication and practical problem-solving</li>
+            <li><span>✔</span> Long-term support, maintenance, and performance improvements</li>
+            <li><span>✔</span> Focus on clean delivery, reliability, and business value</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="process">
+      <div class="container">
+        <div class="section-title">
+          <h2>Our Process</h2>
+          <p>
+            A straightforward workflow that keeps projects organized, efficient, and easy to manage.
+          </p>
+        </div>
+
+        <div class="process-grid">
+          <div class="card">
+            <div class="icon">1</div>
+            <h3>Discovery</h3>
+            <p>
+              Understand the business, the problem, and the best technical direction for the project.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="icon">2</div>
+            <h3>Planning</h3>
+            <p>
+              Define structure, tools, integrations, and development flow before work begins.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="icon">3</div>
+            <h3>Execution</h3>
+            <p>
+              Build with focus on usability, speed, clean code, and long-term maintainability.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="icon">4</div>
+            <h3>Support</h3>
+            <p>
+              Test, refine, launch, and provide maintenance to keep everything running smoothly.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-title">
+          <h2>Client-Focused Approach</h2>
+          <p>
+            We aim to make the process simple, dependable, and worth your investment.
+          </p>
+        </div>
+
+        <div class="testimonials-grid">
+          <div class="card">
+            <h3>Reliable Delivery</h3>
+            <p>
+              Projects are handled with attention to deadlines, quality, and technical accuracy.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Business Understanding</h3>
+            <p>
+              We do not just build pages. We build solutions that support growth and day-to-day operations.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Long-Term Value</h3>
+            <p>
+              The goal is not only launch. The goal is a site or system that stays useful and performs well.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="cta">
+          <h2>Let’s build something solid.</h2>
+          <p>
+            If you need a professional website, an eCommerce store, custom integration,
+            or ongoing technical support, AIT Global LTD is ready to help.
+          </p>
+          <div class="hero-actions" style="justify-content:center;">
+            <a href="mailto:your@email.com" class="btn btn-primary">Email Us</a>
+            <a href="https://github.com/yourusername" target="_blank" class="btn btn-secondary">GitHub Profile</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-wrap">
+      <div>© 2025 AIT Global LTD. All rights reserved worldwide.</div>
+      <div>Developed by AIT Global LTD.</div>
+    </div>
+  </footer>
+
+  <script>
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    menuToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("show");
+    });
+
+    document.querySelectorAll(".nav-links a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("show");
+      });
+    });
+  </script>
 </body>
 </html>
