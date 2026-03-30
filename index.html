@@ -298,9 +298,12 @@
     </section>
 
     <footer class="footer">
-      © 2025 AIT Global Ltd. All rights reserved worldwide.
+      © <span id="year"></span> AIT Global Ltd. All rights reserved worldwide.
     </footer>
   </div>
 
 </body>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </html>
