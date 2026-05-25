@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIT Global Ltd — Concept C</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Epilogue:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --black: #0D0D0D;
+    --white: #ffffff;
+    --gray: #F5F5F3;
+    --border: #E8E8E6;
+    --muted: #888884;
+    --text: #1A1A1A;
+    --accent: #0D0D0D;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Epilogue', sans-serif;
+    background: var(--white);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 0 6%;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 18px;
+    color: var(--black);
+    text-decoration: none;
+    letter-spacing: -0.5px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .logo-badge {
+    background: var(--black);
+    color: var(--white);
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 800;
+  }
+
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a { font-size: 13px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--black); }
+
+  .nav-cta {
+    background: var(--black);
+    color: var(--white);
+    padding: 9px 22px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    font-family: 'Syne', sans-serif;
+    transition: all 0.2s;
+  }
+
+  .nav-cta:hover { background: #333; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 64px;
+  }
+
+  .hero-left {
+    padding: 80px 6% 80px 6%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-right: 1px solid var(--border);
+  }
+
+  .hero-right {
+    background: var(--black);
+    padding: 80px 6%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 24px;
+  }
+
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(48px, 5.5vw, 76px);
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -3px;
+    color: var(--black);
+    margin-bottom: 28px;
+  }
+
+  .hero-sub {
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.8;
+    max-width: 420px;
+    margin-bottom: 44px;
+  }
+
+  .btn-primary {
+    background: var(--black);
+    color: var(--white);
+    padding: 16px 36px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    font-family: 'Syne', sans-serif;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.2s;
+    align-self: flex-start;
+  }
+
+  .btn-primary:hover { background: #333; transform: translateY(-2px); }
+
+  .hero-stats-row {
+    display: flex;
+    gap: 0;
+    border-top: 1px solid var(--border);
+    margin-top: 60px;
+  }
+
+  .hero-stat {
+    flex: 1;
+    padding: 28px 0;
+    border-right: 1px solid var(--border);
+    padding-right: 24px;
+    padding-left: 0;
+  }
+
+  .hero-stat:last-child { border-right: none; padding-right: 0; padding-left: 24px; }
+  .hero-stat:nth-child(2) { padding-left: 24px; }
+
+  .hero-stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--black);
+    letter-spacing: -1px;
+    line-height: 1;
+  }
+
+  .hero-stat-label { font-size: 11px; color: var(--muted); margin-top: 4px; }
+
+  .hero-right-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.25);
+    margin-bottom: 32px;
+  }
+
+  .services-mini-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    flex: 1;
+  }
+
+  .mini-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 12px;
+    padding: 22px 20px;
+    transition: background 0.2s;
+  }
+
+  .mini-card:hover { background: rgba(255,255,255,0.07); }
+
+  .mini-icon { font-size: 22px; margin-bottom: 12px; }
+
+  .mini-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 6px;
+  }
+
+  .mini-desc { font-size: 11px; font-weight: 300; color: rgba(255,255,255,0.35); line-height: 1.5; }
+
+  .hero-right-bottom {
+    margin-top: 32px;
+    padding-top: 28px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .hero-right-bottom span { font-size: 12px; color: rgba(255,255,255,0.3); }
+
+  .btn-white {
+    background: var(--white);
+    color: var(--black);
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    font-family: 'Syne', sans-serif;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .btn-white:hover { background: #eee; }
+
+  /* TICKER */
+  .ticker {
+    background: var(--gray);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .ticker-inner {
+    display: inline-flex;
+    gap: 40px;
+    animation: ticker 25s linear infinite;
+  }
+
+  .ticker-item { font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
+  .ticker-dot { color: var(--border); }
+
+  @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+  /* SECTIONS */
+  section { padding: 110px 6%; }
+
+  .section-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 60px; }
+
+  .section-header-left { }
+
+  .section-eyebrow {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+
+  h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 800;
+    color: var(--black);
+    line-height: 1.0;
+    letter-spacing: -2px;
+    margin-bottom: 0;
+  }
+
+  .section-sub {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.8;
+    max-width: 360px;
+    text-align: right;
+  }
+
+  /* SERVICES SECTION */
+  .services-section { background: var(--gray); }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  .service-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px 24px;
+    transition: all 0.25s;
+    cursor: default;
+    position: relative;
+  }
+
+  .service-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 48px rgba(0,0,0,0.06);
+    border-color: var(--black);
+  }
+
+  .service-num { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 2px; color: var(--muted); margin-bottom: 20px; }
+  .service-icon { font-size: 28px; margin-bottom: 16px; }
+  .service-title { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; color: var(--black); margin-bottom: 8px; letter-spacing: -0.3px; }
+  .service-desc { font-size: 12px; font-weight: 300; color: var(--muted); line-height: 1.7; }
+
+  /* WORK */
+  .work-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    gap: 20px;
+  }
+
+  .work-card {
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+
+  .work-card:hover { border-color: var(--black); transform: translateY(-6px); box-shadow: 0 24px 64px rgba(0,0,0,0.08); }
+
+  .work-thumb {
+    height: 260px;
+    display: flex;
+    align-items: flex-end;
+    padding: 28px 32px;
+    position: relative;
+  }
+
+  .work-thumb-1 { background: var(--black); }
+  .work-thumb-2 { background: #0D1A2D; }
+
+  .work-thumb-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    color: rgba(255,255,255,0.08);
+    letter-spacing: -1px;
+    line-height: 1;
+    position: absolute;
+    top: 24px;
+    left: 28px;
+    right: 28px;
+  }
+
+  .work-thumb-tag {
+    background: rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.6);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    display: inline-block;
+  }
+
+  .work-body { padding: 28px 32px 32px; background: var(--white); }
+
+  .work-title { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 800; color: var(--black); margin-bottom: 10px; letter-spacing: -0.5px; }
+  .work-desc { font-size: 13px; font-weight: 300; color: var(--muted); line-height: 1.7; margin-bottom: 20px; }
+  .work-link { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 500; font-family: 'Syne', sans-serif; color: var(--black); text-decoration: none; border-bottom: 1.5px solid var(--black); padding-bottom: 2px; transition: opacity 0.2s; }
+  .work-link:hover { opacity: 0.6; }
+
+  /* WHY */
+  .why-section { background: var(--black); }
+
+  .why-section h2 { color: var(--white); }
+  .why-section .section-eyebrow { color: rgba(255,255,255,0.3); }
+  .why-section .section-sub { color: rgba(255,255,255,0.3); }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin-top: 60px;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .why-card {
+    padding: 36px 28px;
+    border-right: 1px solid rgba(255,255,255,0.06);
+    transition: background 0.2s;
+  }
+
+  .why-card:last-child { border-right: none; }
+  .why-card:hover { background: rgba(255,255,255,0.03); }
+
+  .why-card-num { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 2px; color: rgba(255,255,255,0.2); margin-bottom: 20px; }
+  .why-card-icon { font-size: 24px; margin-bottom: 16px; }
+  .why-card-title { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; color: var(--white); margin-bottom: 10px; }
+  .why-card-desc { font-size: 12px; font-weight: 300; color: rgba(255,255,255,0.35); line-height: 1.7; }
+
+  .cta-strip {
+    margin-top: 60px;
+    background: var(--white);
+    border-radius: 16px;
+    padding: 48px 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+
+  .cta-strip h3 { font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 800; color: var(--black); letter-spacing: -1px; }
+  .cta-strip p { font-size: 14px; font-weight: 300; color: var(--muted); margin-top: 4px; }
+
+  .cta-strip .btn-primary { align-self: center; white-space: nowrap; }
+
+  footer {
+    background: var(--black);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 36px 6%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .footer-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 16px; color: var(--white); }
+
+  footer p { font-size: 12px; color: rgba(255,255,255,0.25); }
+
+  .footer-links { display: flex; gap: 28px; list-style: none; }
+  .footer-links a { font-size: 12px; color: rgba(255,255,255,0.3); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--white); }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; }
+    .services-grid { grid-template-columns: 1fr 1fr; }
+    .why-grid { grid-template-columns: 1fr 1fr; }
+    .nav-links { display: none; }
+    .section-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .section-sub { text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="logo"><span class="logo-badge">AIT</span> Global</a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#why">About</a></li>
+  </ul>
+  <a href="https://www.upwork.com" class="nav-cta" target="_blank">Hire Us →</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Web Development Agency</div>
+    <h1>Modern<br>websites.<br>Built right.</h1>
+    <p class="hero-sub">AIT Global Ltd delivers clean, high-performance web solutions — from eCommerce stores to complex custom platforms.</p>
+    <a href="https://www.upwork.com" class="btn-primary" target="_blank">Hire us on Upwork →</a>
+    <div class="hero-stats-row">
+      <div class="hero-stat">
+        <div class="hero-stat-num">50+</div>
+        <div class="hero-stat-label">Projects delivered</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">5★</div>
+        <div class="hero-stat-label">Client rating</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">100%</div>
+        <div class="hero-stat-label">Satisfaction</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div>
+      <div class="hero-right-label">Our Services</div>
+      <div class="services-mini-grid">
+        <div class="mini-card">
+          <div class="mini-icon">🌐</div>
+          <div class="mini-title">Web Dev</div>
+          <div class="mini-desc">Fast, responsive modern websites.</div>
+        </div>
+        <div class="mini-card">
+          <div class="mini-icon">⚡</div>
+          <div class="mini-title">WordPress</div>
+          <div class="mini-desc">Custom themes & plugins.</div>
+        </div>
+        <div class="mini-card">
+          <div class="mini-icon">🛒</div>
+          <div class="mini-title">E-commerce</div>
+          <div class="mini-desc">Shopify & WooCommerce stores.</div>
+        </div>
+        <div class="mini-card">
+          <div class="mini-icon">⚙️</div>
+          <div class="mini-title">Web Apps</div>
+          <div class="mini-desc">Complex custom platforms.</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-right-bottom">
+      <span>Available for new projects</span>
+      <a href="#work" class="btn-white">View Work →</a>
+    </div>
+  </div>
+</div>
+
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-item">Website Development</span><span class="ticker-dot">—</span>
+    <span class="ticker-item">WordPress</span><span class="ticker-dot">—</span>
+    <span class="ticker-item">E-commerce</span><span class="ticker-dot">—</span>
+    <span class="ticker-item">Custom Web Apps</span><span class="ticker-dot">—</span>
+    <span class="ticker-item">Shopify</span><span class="ticker-dot">—</span>
+    <span class="ticker-item">Laravel</span><span class="ticker-dot">—</span>
+    <span class="ticker-item">React</span><span class="ticker-dot">—</span>
+    <span class="ticker-item">UI/UX Design</span><span class="ticker-dot">—</span>
+    <span class="ticker-item">Website Development</span><span class="ticker-dot">—</span>
+    <span class="ticker-item">WordPress</span><span class="ticker-dot">—</span>
+    <span class="ticker-item">E-commerce</span><span class="ticker-dot">—</span>
+    <span class="ticker-item">Custom Web Apps</span><span class="ticker-dot">—</span>
+    <span class="ticker-item">Shopify</span><span class="ticker-dot">—</span>
+    <span class="ticker-item">Laravel</span><span class="ticker-dot">—</span>
+    <span class="ticker-item">React</span><span class="ticker-dot">—</span>
+    <span class="ticker-item">UI/UX Design</span><span class="ticker-dot">—</span>
+  </div>
+</div>
+
+<section class="services-section" id="services">
+  <div class="section-header">
+    <div class="section-header-left">
+      <div class="section-eyebrow">What we do</div>
+      <h2>Our Services</h2>
+    </div>
+    <p class="section-sub">End-to-end web development solutions tailored to your business needs.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-num">01</div>
+      <div class="service-icon">🌐</div>
+      <div class="service-title">Website Development</div>
+      <p class="service-desc">Fast, responsive websites built with modern technologies and clean code.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-num">02</div>
+      <div class="service-icon">⚡</div>
+      <div class="service-title">WordPress</div>
+      <p class="service-desc">Custom themes, plugins, and full WordPress builds optimised for performance.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-num">03</div>
+      <div class="service-icon">🛒</div>
+      <div class="service-title">E-commerce</div>
+      <p class="service-desc">Shopify, WooCommerce, and custom stores built to convert and scale.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-num">04</div>
+      <div class="service-icon">⚙️</div>
+      <div class="service-title">Custom Web Apps</div>
+      <p class="service-desc">Complex platforms, dashboards, and automation tools built from scratch.</p>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="section-header">
+    <div class="section-header-left">
+      <div class="section-eyebrow">Portfolio</div>
+      <h2>Our Work</h2>
+    </div>
+    <p class="section-sub">A selection of projects we're proud to have delivered.</p>
+  </div>
+  <div class="work-grid">
+    <div class="work-card">
+      <div class="work-thumb work-thumb-1">
+        <div class="work-thumb-label">Shohell Apparel</div>
+        <span class="work-thumb-tag">E-commerce</span>
+      </div>
+      <div class="work-body">
+        <div class="work-title">Shohell Apparel</div>
+        <p class="work-desc">Modern fashion eCommerce website with a clean shopping experience and mobile-first layout.</p>
+        <a href="#" class="work-link">View Demo →</a>
+      </div>
+    </div>
+    <div class="work-card">
+      <div class="work-thumb work-thumb-2">
+        <div class="work-thumb-label">SKU Repricer</div>
+        <span class="work-thumb-tag">Web App</span>
+      </div>
+      <div class="work-body">
+        <div class="work-title">SKU Repricer</div>
+        <p class="work-desc">Advanced repricing platform for Amazon & Walmart sellers with automation and pricing control.</p>
+        <a href="#" class="work-link">View Demo →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="why-section" id="why">
+  <div class="section-header">
+    <div class="section-header-left">
+      <div class="section-eyebrow">Why choose us</div>
+      <h2>Built different.</h2>
+    </div>
+    <p class="section-sub" style="color:rgba(255,255,255,0.3);">We don't just build websites — we build solutions that grow with your business.</p>
+  </div>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-card-num">01</div>
+      <div class="why-card-icon">⚡</div>
+      <div class="why-card-title">Fast Delivery</div>
+      <p class="why-card-desc">We ship on time, every time — no excuses, no delays. We respect your deadlines.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-card-num">02</div>
+      <div class="why-card-icon">✦</div>
+      <div class="why-card-title">Professional Design</div>
+      <p class="why-card-desc">Clean, modern interfaces that make your brand look world-class online.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-card-num">03</div>
+      <div class="why-card-icon">❤</div>
+      <div class="why-card-title">Client Satisfaction</div>
+      <p class="why-card-desc">We stay until you're 100% happy — your success is our success, always.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-card-num">04</div>
+      <div class="why-card-icon">🔒</div>
+      <div class="why-card-title">Clean Code</div>
+      <p class="why-card-desc">Every project is built with maintainable, scalable, documented code.</p>
+    </div>
+  </div>
+  <div class="cta-strip">
+    <div>
+      <h3>Ready to start your project?</h3>
+      <p>Let's build something great. Reach out on Upwork today.</p>
+    </div>
+    <a href="https://www.upwork.com" class="btn-primary" target="_blank">Hire us on Upwork →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">AIT Global</div>
+  <p>© 2026 AIT Global Ltd. All rights reserved worldwide.</p>
+  <ul class="footer-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="https://www.upwork.com" target="_blank">Upwork</a></li>
+    <li><a href="https://www.trustpilot.com/review/aitgloballtd.com" target="_blank">Trustpilot</a></li>
+  </ul>
+</footer>
+
+</body>
+</html>

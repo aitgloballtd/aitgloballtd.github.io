@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIT Global Ltd — Concept B</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --cream: #FAF7F2;
+    --cream2: #F4EFE6;
+    --cream3: #EDE6D9;
+    --orange: #C4570A;
+    --orange-light: #FDF0E8;
+    --dark: #1A1209;
+    --mid: #4A3F35;
+    --muted: #9B8F85;
+    --border: #E5DDD0;
+    --white: #ffffff;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 0 6%;
+    height: 66px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(250,247,242,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .logo {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 17px;
+    color: var(--dark);
+    text-decoration: none;
+    letter-spacing: -0.3px;
+  }
+
+  .logo em { color: var(--orange); font-style: normal; }
+
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a { font-size: 13px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--dark); }
+
+  .nav-cta {
+    border: 1.5px solid var(--dark);
+    color: var(--dark);
+    padding: 8px 20px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .nav-cta:hover { background: var(--dark); color: var(--white); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    padding: 140px 6% 100px;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .hero-line {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+
+  .hero-line::before { content: ''; width: 40px; height: 1.5px; background: var(--orange); }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--orange);
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(52px, 6vw, 84px);
+    font-weight: 600;
+    line-height: 1.0;
+    letter-spacing: -2px;
+    color: var(--dark);
+    margin-bottom: 28px;
+  }
+
+  .hero h1 u {
+    text-decoration-color: var(--orange);
+    text-underline-offset: 6px;
+    text-decoration-thickness: 2px;
+  }
+
+  .hero h1 em { font-style: italic; color: var(--mid); }
+
+  .hero-sub {
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.9;
+    max-width: 480px;
+    margin-bottom: 44px;
+  }
+
+  .hero-actions { display: flex; gap: 16px; align-items: center; }
+
+  .btn-primary {
+    background: var(--dark);
+    color: var(--white);
+    padding: 14px 32px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.25s;
+  }
+
+  .btn-primary:hover { background: var(--orange); transform: translateY(-2px); }
+
+  .btn-outline {
+    background: var(--cream2);
+    color: var(--dark);
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 400;
+    text-decoration: none;
+    border: 1px solid var(--border);
+    transition: all 0.2s;
+  }
+
+  .btn-outline:hover { background: var(--cream3); }
+
+  .hero-right {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .hero-stat {
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .hero-stat:first-child { border-top: 1px solid var(--border); }
+
+  .hero-stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 44px;
+    font-weight: 600;
+    color: var(--dark);
+    letter-spacing: -1px;
+    line-height: 1;
+  }
+
+  .hero-stat-label { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+  /* DIVIDER */
+  .divider {
+    padding: 24px 6%;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: var(--cream2);
+    overflow: hidden;
+  }
+
+  .divider-item {
+    flex: 1;
+    text-align: center;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 0 24px;
+    border-right: 1px solid var(--border);
+  }
+
+  .divider-item:last-child { border-right: none; }
+
+  /* SECTIONS */
+  section { padding: 110px 6%; }
+
+  .section-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 16px;
+  }
+
+  .section-eyebrow::before { content: ''; width: 30px; height: 1.5px; background: var(--orange); }
+
+  h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 4.5vw, 56px);
+    font-weight: 600;
+    color: var(--dark);
+    line-height: 1.1;
+    letter-spacing: -1px;
+    margin-bottom: 16px;
+  }
+
+  .section-sub {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.9;
+    max-width: 480px;
+    margin-bottom: 64px;
+  }
+
+  /* SERVICES */
+  .services { background: var(--cream2); }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .service-card {
+    background: var(--white);
+    padding: 36px 28px;
+    border-right: 1px solid var(--border);
+    transition: background 0.2s;
+    cursor: default;
+  }
+
+  .service-card:last-child { border-right: none; }
+  .service-card:hover { background: var(--orange-light); }
+
+  .service-num {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    color: var(--orange);
+    margin-bottom: 20px;
+  }
+
+  .service-icon { font-size: 28px; margin-bottom: 16px; }
+
+  .service-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 10px;
+  }
+
+  .service-desc { font-size: 12px; font-weight: 300; color: var(--muted); line-height: 1.7; }
+
+  /* WORK */
+  .work-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    gap: 24px;
+  }
+
+  .work-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+
+  .work-card:hover { transform: translateY(-6px); box-shadow: 0 24px 60px rgba(26,18,9,0.08); }
+
+  .work-thumb {
+    height: 240px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-style: italic;
+  }
+
+  .work-thumb-1 { background: var(--cream2); color: var(--muted); }
+  .work-thumb-2 { background: var(--dark); color: rgba(255,255,255,0.3); }
+
+  .work-body { padding: 28px 32px 32px; }
+
+  .work-tag {
+    display: inline-block;
+    background: var(--orange-light);
+    color: var(--orange);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 4px;
+    margin-bottom: 14px;
+  }
+
+  .work-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 10px;
+  }
+
+  .work-desc { font-size: 13px; font-weight: 300; color: var(--muted); line-height: 1.7; margin-bottom: 24px; }
+
+  .work-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--orange);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+
+  .work-link:hover { border-color: var(--orange); }
+
+  /* WHY */
+  .why { background: var(--dark); }
+
+  .why h2 { color: var(--white); }
+  .why .section-eyebrow { color: #C4830A; }
+  .why .section-eyebrow::before { background: #C4830A; }
+  .why .section-sub { color: rgba(255,255,255,0.4); }
+
+  .why-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .why-list { list-style: none; display: flex; flex-direction: column; gap: 0; margin-top: 40px; }
+
+  .why-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 24px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    transition: padding-left 0.2s;
+  }
+
+  .why-item:hover { padding-left: 8px; }
+
+  .why-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--orange);
+    flex-shrink: 0;
+    width: 28px;
+    margin-top: 2px;
+  }
+
+  .why-text strong { display: block; font-size: 15px; font-weight: 500; color: var(--white); margin-bottom: 4px; }
+  .why-text span { font-size: 13px; font-weight: 300; color: rgba(255,255,255,0.4); line-height: 1.6; }
+
+  .cta-right {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 24px;
+    padding: 56px 44px;
+    text-align: center;
+  }
+
+  .cta-right h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 14px;
+    line-height: 1.2;
+  }
+
+  .cta-right p { font-size: 14px; font-weight: 300; color: rgba(255,255,255,0.45); line-height: 1.7; margin-bottom: 36px; }
+
+  .btn-cream {
+    background: var(--cream);
+    color: var(--dark);
+    padding: 14px 32px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    transition: all 0.2s;
+  }
+
+  .btn-cream:hover { background: var(--orange); color: var(--white); }
+
+  .cta-trust { font-size: 12px; color: rgba(255,255,255,0.25); margin-top: 20px; }
+
+  footer {
+    background: var(--cream2);
+    border-top: 1px solid var(--border);
+    padding: 40px 6%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 600; color: var(--dark); }
+  .footer-logo em { color: var(--orange); font-style: normal; }
+
+  footer p { font-size: 12px; color: var(--muted); }
+
+  .footer-links { display: flex; gap: 28px; list-style: none; }
+  .footer-links a { font-size: 12px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--orange); }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; }
+    .why-inner { grid-template-columns: 1fr; }
+    .services-grid { grid-template-columns: 1fr 1fr; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="logo">AIT<em>.</em>Global</a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#why">About</a></li>
+  </ul>
+  <a href="https://www.upwork.com" class="nav-cta" target="_blank">Hire Us</a>
+</nav>
+
+<section class="hero">
+  <div>
+    <div class="hero-line"><span class="hero-eyebrow">Web Development Agency</span></div>
+    <h1>We build <u>modern</u><br>websites &<br><em>web apps</em></h1>
+    <p class="hero-sub">AIT Global Ltd delivers clean, high-performance web solutions — from eCommerce stores to complex custom platforms.</p>
+    <div class="hero-actions">
+      <a href="https://www.upwork.com" class="btn-primary" target="_blank">Hire us on Upwork →</a>
+      <a href="#work" class="btn-outline">View our work</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-stat">
+      <div class="hero-stat-num">50+</div>
+      <div class="hero-stat-label">Projects delivered</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">5.0★</div>
+      <div class="hero-stat-label">Average client rating</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">3yr+</div>
+      <div class="hero-stat-label">Industry experience</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">100%</div>
+      <div class="hero-stat-label">Client satisfaction</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider">
+  <div class="divider-item">Website Development</div>
+  <div class="divider-item">WordPress</div>
+  <div class="divider-item">E-commerce</div>
+  <div class="divider-item">Custom Web Apps</div>
+  <div class="divider-item">Shopify</div>
+  <div class="divider-item">Laravel</div>
+</div>
+
+<section class="services" id="services">
+  <div class="section-eyebrow">What we do</div>
+  <h2>Our Services</h2>
+  <p class="section-sub">End-to-end web development solutions tailored to your business needs.</p>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-num">01</div>
+      <div class="service-icon">🌐</div>
+      <div class="service-title">Website Development</div>
+      <p class="service-desc">Fast, responsive websites built with modern technologies and clean code.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-num">02</div>
+      <div class="service-icon">⚡</div>
+      <div class="service-title">WordPress</div>
+      <p class="service-desc">Custom themes, plugins, and full WordPress builds optimised for performance.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-num">03</div>
+      <div class="service-icon">🛒</div>
+      <div class="service-title">E-commerce</div>
+      <p class="service-desc">Shopify, WooCommerce, and custom stores built to convert and scale.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-num">04</div>
+      <div class="service-icon">⚙️</div>
+      <div class="service-title">Custom Web Apps</div>
+      <p class="service-desc">Complex platforms, dashboards, and automation tools from scratch.</p>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="section-eyebrow">Portfolio</div>
+  <h2>Our Work</h2>
+  <p class="section-sub">A selection of projects we're proud to have delivered.</p>
+  <div class="work-grid">
+    <div class="work-card">
+      <div class="work-thumb work-thumb-1">Shohell Apparel</div>
+      <div class="work-body">
+        <div class="work-tag">E-commerce</div>
+        <div class="work-title">Shohell Apparel</div>
+        <p class="work-desc">Modern fashion eCommerce website with a clean shopping experience and mobile-first layout.</p>
+        <a href="#" class="work-link">View Demo →</a>
+      </div>
+    </div>
+    <div class="work-card">
+      <div class="work-thumb work-thumb-2">SKU Repricer</div>
+      <div class="work-body">
+        <div class="work-tag">Web App</div>
+        <div class="work-title">SKU Repricer</div>
+        <p class="work-desc">Advanced repricing platform for Amazon & Walmart sellers with automation and pricing control.</p>
+        <a href="#" class="work-link">View Demo →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="why" id="why">
+  <div class="why-inner">
+    <div>
+      <div class="section-eyebrow">Why choose us</div>
+      <h2>Built different.<br>Delivered right.</h2>
+      <p class="section-sub">We don't just build websites — we build solutions that grow with your business.</p>
+      <ul class="why-list">
+        <li class="why-item">
+          <div class="why-num">01</div>
+          <div class="why-text">
+            <strong>Fast Delivery</strong>
+            <span>We ship on time, every time — no excuses, no delays.</span>
+          </div>
+        </li>
+        <li class="why-item">
+          <div class="why-num">02</div>
+          <div class="why-text">
+            <strong>Professional Design</strong>
+            <span>Clean, modern interfaces that make your brand shine online.</span>
+          </div>
+        </li>
+        <li class="why-item">
+          <div class="why-num">03</div>
+          <div class="why-text">
+            <strong>Client Satisfaction</strong>
+            <span>We stay until you're 100% happy — your success is our success.</span>
+          </div>
+        </li>
+        <li class="why-item">
+          <div class="why-num">04</div>
+          <div class="why-text">
+            <strong>Clean Code</strong>
+            <span>Every project is built with maintainable, scalable, documented code.</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="cta-right">
+      <h3>Ready to start your project?</h3>
+      <p>Let's build something great together. Reach out on Upwork and let's discuss your project today.</p>
+      <a href="https://www.upwork.com" class="btn-cream" target="_blank">Hire us on Upwork →</a>
+      <p class="cta-trust">⭐⭐⭐⭐⭐ 5.0 rated on Upwork</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">AIT<em>.</em>Global</div>
+  <p>© 2026 AIT Global Ltd. All rights reserved worldwide.</p>
+  <ul class="footer-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="https://www.upwork.com" target="_blank">Upwork</a></li>
+    <li><a href="https://www.trustpilot.com/review/aitgloballtd.com" target="_blank">Trustpilot</a></li>
+  </ul>
+</footer>
+
+</body>
+</html>
